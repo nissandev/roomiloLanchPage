@@ -1,112 +1,166 @@
+"use client";
+
+import { FaPaperPlane } from "react-icons/fa";
+import bg from "../assets/images/bg.jpg";
+import { useEffect, useState } from "react";
+import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { TbWorldWww } from "react-icons/tb";
 import Image from "next/image";
+import jsEncoderLogo from "../assets/images/jsencoderLogo.png";
 
 export default function Home() {
+  const [isChange, setChange] = useState(false);
+  const [days, setDays] = useState(60);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  useEffect(() => {
+    // Check if the countdown end date is stored in local storage
+    const storedEndDate = localStorage.getItem("countdownEndDate");
+    if (storedEndDate) {
+      // Calculate remaining time
+      const endDate = new Date(storedEndDate);
+      const now = new Date();
+      const difference:number = endDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        const remainingDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const remainingHours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const remainingMinutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const remainingSeconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        // Update state
+        setDays(remainingDays);
+        setHours(remainingHours);
+        setMinutes(remainingMinutes);
+        setSeconds(remainingSeconds);
+      }
+    } else {
+      // Set the countdown end date in local storage
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() + days); // Set the countdown end date 30 days from now
+      localStorage.setItem("countdownEndDate", endDate.toString());
+    }
+  }, []);
+
+  useEffect(() => {
+    const countdownInterval = setInterval(() => {
+      if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+        clearInterval(countdownInterval);
+      } else {
+        if (seconds === 0) {
+          if (minutes === 0) {
+            if (hours === 0) {
+              setDays((prevDays) => prevDays - 1);
+              setHours(23);
+              setMinutes(59);
+              setSeconds(59);
+            } else {
+              setHours((prevHours) => prevHours - 1);
+              setMinutes(59);
+              setSeconds(59);
+            }
+          } else {
+            setMinutes((prevMinutes) => prevMinutes - 1);
+            setSeconds(59);
+          }
+        } else {
+          setSeconds((prevSeconds) => prevSeconds - 1);
+        }
+      }
+    }, 1000);
+
+    return () => clearInterval(countdownInterval);
+  }, [days, hours, minutes, seconds]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setChange(!isChange);
+    }, 3000);
+  }, [isChange]);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="  bg-[url(/bg.jpg)] bg-cover bg-center h-full md:h-screen">
+      <div className="bg-black bg-opacity-45">
+        <div className=" hidden md:block absolute right-5 top-5">
+          <Image className="filter grayscale brightness-[180]" src={jsEncoderLogo} alt="jsEncoderLogo" />
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <Image className="filter md:hidden grayscale brightness-[180] mx-auto" src={jsEncoderLogo} alt="jsEncoderLogo" /> 
+        <div className="h-screen flex flex-col justify-center items-center w-full space-y-8  ">
+          <div className="bg-[#f26600] w-[210px] rounded-md py-2 text-4xl mx-auto text-center flex gap-2 justify-center items-center">
+            <p>
+              <FaPaperPlane />
+            </p>
+            <p className="font-[600]">Roomilo</p>
+          </div>
+          <h1 className="text-[40px] font-extrabold text-center">
+            Our website is coming soon!
+          </h1>
+          <div className="relative">
+            <p
+              className={`font-semibold text-center absolute right-2 text-[22px] duration-700 ${
+                isChange ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              It&apos;s currently Under Construction
+            </p>
+            <p
+              className={`font-semibold text-[22px]  text-center duration-700 ${
+                isChange ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              We are doing our best to launch Asap
+            </p>
+          </div>
+          {/* countdown */}
+          <div className="card">
+            <div className="flex items-center gap-3">
+              <div className="flex flex-col items-center md:w-[200px]">
+                <p className="text-2xl md:text-9xl font-bold">{days}</p>
+                <p className="font-semibold">Days</p>
+              </div>
+              :
+              <div className="flex flex-col items-center md:w-[200px]">
+                <p className="text-2xl md:text-9xl font-bold">{hours}</p>
+                <p className="font-semibold">Hours</p>
+              </div>
+              :
+              <div className="flex flex-col items-center md:w-[200px]">
+                <p className="text-2xl md:text-9xl font-bold">{minutes}</p>
+                <p className="font-semibold">Minutes</p>
+              </div>
+              :
+              <div className="flex flex-col items-center md:w-[200px]">
+                <p className="text-2xl md:text-9xl font-bold">{seconds}</p>
+                <p className="font-semibold">Seconds</p>
+              </div>
+            </div>
+          </div>
+          <h1 className="text-center">Please Follow our social media to get latest updates & news</h1>
+          <div className="flex items-center justify-center gap-6 text-2xl">
+            <a
+              target="_blank"
+              href="https://www.facebook.com/groups/941286630824319"
+              title="facebook"
+            >
+              <FaFacebook />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/company/js-encoder"
+              title="linkedin"
+            >
+              <FaLinkedin />
+            </a>
+            <a target="_blank" href="https://jsencoder.com/" title="JSEncoder">
+              <TbWorldWww />
+            </a>
+          </div>
+        </div>
       </div>
     </main>
   );

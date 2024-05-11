@@ -26,6 +26,16 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.card {
+  padding: 20px;
+  backdrop-filter: blur(3px) saturate(280%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(177, 178, 179, 0);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
