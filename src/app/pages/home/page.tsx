@@ -5,7 +5,7 @@ const Home = () => {
     const releaseDate = new Date(process.env.NEXT_PUBLIC_OPENING_DATE || '');
     return (
         <div>
-            <Countdown releaseDate={releaseDate}/>
+            {/* <Countdown releaseDate={releaseDate}/> */}
         </div>
     );
 };

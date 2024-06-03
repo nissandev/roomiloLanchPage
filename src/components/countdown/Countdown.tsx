@@ -129,7 +129,7 @@ const Countdown: React.FC<CountdownProps> = ({ releaseDate }) => {
                 </div>
               </div>
             ) : (
-              <p>Release date has passed!</p>
+              <p className="text-center text-5xl font-bold">Release date has passed!</p>
             )}
           </div>
           <h1 className='text-center'>

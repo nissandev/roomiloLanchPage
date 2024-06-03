@@ -8,7 +8,7 @@ import { TbWorldWww } from "react-icons/tb";
 import Image from "next/image";
 import jsEncoderLogo from "../assets/images/jsencoderLogo.png";
 import Head from "next/head";
-import Home from "./home/page";
+import Home from "./pages/home/page";
 
 export default function Root() {
   return (
