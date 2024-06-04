@@ -45,12 +45,9 @@ const DesktopTopNav = () => {
   }, [selectedLanguage]);
 
   return (
-    <>
+    <div>
       <div
-        style={{
-          boxShadow: "0 1px 2px 0 rgba(0,0,0,.03),0 1px 2px 0 rgba(0,0,0,.03)",
-        }}
-        className='bg-[#f26600] text-[14px] px-[5em] h-[70px] flex items-center  justify-between gap-4 border-b '>
+        className='bg-[#f26600] text-[14px] px-[5em] h-[70px] flex items-center  justify-between gap-4'>
         <div className='text-[26px] text-white font-extrabold'>Roomilo</div>
         <div className='flex items-center text-white'>
           {desktopTopNavContent?.map((topNav, idx) => (
@@ -216,7 +213,7 @@ const DesktopTopNav = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

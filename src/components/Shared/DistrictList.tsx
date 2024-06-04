@@ -123,7 +123,7 @@ const DistrictList = () => {
 
   return (
     <>
-      <div className='text-[14px] h-[40px] bg-[#F3F5F7]  px-[6px] flex items-center'>
+      <div className='text-[14px] h-[40px] bg-[#F3F5F7]  px-[6px] flex items-center -z-10'>
         <div className='flex justify-evenly w-full'>
           {allDistrict?.map((district, ind) => (
             <div
