@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from 'next/dynamic';
 import { Suspense } from "react";
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["greek"] });
 const DesktopTopNav = dynamic(() => import('@/components/Shared/DesktopTopNav'), { suspense: true });
 const DistrictList = dynamic(() => import('@/components/Shared/DistrictList'), { suspense: true });
 
@@ -20,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={` prevent-select`}>
         <Suspense fallback={"Loading..."}>
           <DesktopTopNav />
           <DistrictList/>

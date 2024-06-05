@@ -147,7 +147,7 @@ const DistrictList = () => {
                 onMouseLeave={() => handleMouseLeave()}
                 className={`absolute ${
                   isDropdownOpen && ind === currentIndex ? "block" : "hidden"
-                } mt-[px] rounded bg-white w-[16.1%] p-4 shadow-md z-1 flex flex-col gap-4 border`}>
+                } mt-[px] rounded bg-white w-[16.1%] p-4 shadow-md z-10 flex flex-col gap-4 border`}>
                 <li className='text-[20px] font-bold'>Popular Localities</li>
                 {district?.underDistrict?.map((city, ind) => (
                   <li
