@@ -7,11 +7,15 @@ const Searchbar = dynamic(() => import("@/components/Searchbar/Searchbar"), {
 const Countdown = dynamic(() => import("@/components/countdown/Countdown"), {
   suspense: true,
 });
+const MaxDiscountBanner = dynamic(() => import("@/components/Shared/MaxDiscountBanner"), {
+  suspense: true,
+});
 const Home = () => {
   const releaseDate = new Date(process.env.NEXT_PUBLIC_OPENING_DATE || "");
   return (
     <div>
       <Searchbar />
+      <MaxDiscountBanner/>
       {/* <Countdown releaseDate={releaseDate}/> */}
     </div>
   );

@@ -142,7 +142,7 @@ const DistrictList = () => {
                   />
                 </span>
               </li>
-              <div
+              <ul
                 onMouseEnter={() => handleMouseEnter(ind)}
                 onMouseLeave={() => handleMouseLeave()}
                 className={`absolute ${
@@ -156,13 +156,13 @@ const DistrictList = () => {
                     {city?.city}
                   </li>
                 ))}
-                <li className='flex gap-1 items-center text-red-500 font-semibold'>
+                <li className='flex gap-1 items-center text-red-500 font-semibold cursor-pointer hover:text-red-600 transition-all transform-gpu'>
                   <span>All of {district?.district}</span>
                   <span>
                     <FaChevronRight className='text-xl' />
                   </span>
                 </li>
-              </div>
+              </ul>
             </div>
           ))}
           <div className='list-none cursor-pointer'>
