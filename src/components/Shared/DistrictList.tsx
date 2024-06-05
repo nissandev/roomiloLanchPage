@@ -123,7 +123,7 @@ const DistrictList = () => {
 
   return (
     <>
-      <div className='text-[14px] h-[40px] bg-[#F3F5F7]  px-[6px] flex items-center -z-10'>
+      <div className='text-[14px] h-[40px] bg-[#E7E8EC]  px-[6px] flex items-center -z-10'>
         <div className='flex justify-evenly w-full'>
           {allDistrict?.map((district, ind) => (
             <div
@@ -132,7 +132,7 @@ const DistrictList = () => {
               <li
                 onMouseEnter={() => handleMouseEnter(ind)}
                 onMouseLeave={() => handleMouseLeave()}
-                className='flex gap-[2px] items-center relative h-[40px] transition-all duration-300 hover:bg-gradient-to-t hover:from-[#F1EFEF] hover:to-[#FEFEFE]  w-fit px-4 cursor-pointer '>
+                className='text-gray-700 flex gap-[2px] items-center relative h-[40px] transition-all duration-300 hover:bg-gradient-to-t hover:from-[#F1EFEF] hover:to-[#FEFEFE]  w-fit px-4 cursor-pointer '>
                 <span>{district?.district}</span>
                 <span>
                   <IoIosArrowDown
@@ -147,7 +147,7 @@ const DistrictList = () => {
                 onMouseLeave={() => handleMouseLeave()}
                 className={`absolute ${
                   isDropdownOpen && ind === currentIndex ? "block" : "hidden"
-                } mt-[1px] rounded-md bg-white w-[16.1%] p-4 shadow-md z-1 flex flex-col gap-4 border`}>
+                } mt-[px] rounded bg-white w-[16.1%] p-4 shadow-md z-1 flex flex-col gap-4 border`}>
                 <li className='text-[20px] font-bold'>Popular Localities</li>
                 {district?.underDistrict?.map((city, ind) => (
                   <li
