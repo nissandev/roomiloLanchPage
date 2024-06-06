@@ -115,7 +115,7 @@ const Searchbar = () => {
 
   return (
     <div>
-      <div className="lg:h-[28.6vh]  md:h-[40vh] h-[50vh] bg-[url(./../assets/images/bannerwallp.jpg)] bg-no-repeat bg-cover bg-bottom flex md:flex-col gap-6 items-center justify-center">
+      <div className="py-10 bg-[url(./../assets/images/bannerwallp.jpg)] bg-no-repeat bg-cover bg-bottom flex md:flex-col gap-6 items-center justify-center">
         <h1 className=" text-[32px] text-white font-extrabold">
           Over 174,000+ Hotels and Homes across 35+ Countries
         </h1>
@@ -243,13 +243,13 @@ const Searchbar = () => {
 
         {/* --------- Search history Start---------------*/}
         <div className="md:w-[74.5%] mx-4 md:mx-[15.5em]">
-          <div className="flex items-center gap-[24px] text-white whitespace-nowrap">
-            <p className="text-[16px] font-bold">Continue your search</p>
+          <div className="flex items-center gap-[24px] text-white">
+            <p className="text-[16px] font-bold whitespace-nowrap">Continue your search</p>
             <div className="flex items-center gap-[10px]">
               {recentSearch?.slice(0, 4)?.map((search, ind) => (
                 <p
                   key={ind}
-                  className="flex gap-1 items-center justify-evenly border-2 border-white font-bold text-[12px] rounded h-[40px] px-[8px] cursor-pointer hover:bg-black/30"
+                  className=" border-2 border-white font-bold text-[12px] rounded py-[8px] px-[8px] cursor-pointer hover:bg-black/30"
                 >
                   <span>{search?.location}</span>
                   <span>.</span>
