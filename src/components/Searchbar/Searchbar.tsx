@@ -76,7 +76,7 @@ const Searchbar = () => {
       totalGuest: "3",
     },
     {
-      location: "Roomilo 1059 Near Ruby Hospital·05 Jun - 06 Jun | 1 Guest",
+      location: "Roomilo 1059 Near Ruby Hospital",
       selectedDate: "05 Jun - 06 Jun",
       totalGuest: "3",
     },
@@ -242,14 +242,14 @@ const Searchbar = () => {
         {/* ----------Searchbar End-------- -------------*/}
 
         {/* --------- Search history Start---------------*/}
-        <div className="w-full md:w-[74.5%]">
+        <div className="md:w-[74.5%] mx-4 md:mx-[15.5em]">
           <div className="flex items-center gap-[24px] text-white whitespace-nowrap">
             <p className="text-[16px] font-bold">Continue your search</p>
             <div className="flex items-center gap-[10px]">
               {recentSearch?.slice(0, 4)?.map((search, ind) => (
                 <p
                   key={ind}
-                  className="flex gap-1 items-center border-2 border-white font-bold text-[12px] rounded h-[40px] px-[8px] cursor-pointer hover:bg-black/30 "
+                  className="flex gap-1 items-center justify-evenly border-2 border-white font-bold text-[12px] rounded h-[40px] px-[8px] cursor-pointer hover:bg-black/30"
                 >
                   <span>{search?.location}</span>
                   <span>.</span>

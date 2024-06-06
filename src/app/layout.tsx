@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={` prevent-select`}>
+      <body className={` prevent-select overflow-x-hidden`}>
         <Suspense fallback={"Loading..."}>
           <DesktopTopNav />
           <DistrictList/>
