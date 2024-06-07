@@ -10,6 +10,49 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner {
+  background-color: #f26600 !important;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+  background-color: #f26600 !important;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-today
+  .ant-picker-cell-inner::before {
+  border-color: #f26600 !important;
+}
+
+/* Override placeholder text color for RangePicker */
+.ant-picker .ant-picker-input > input::placeholder {
+  color: #999; /* Change to your desired color */
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before,
+.ant-picker-cell-in-view.ant-picker-cell-in-range::before,
+.ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before,
+.ant-picker-time-panel-column
+  > li.ant-picker-time-panel-cell-selected
+  .ant-picker-time-panel-cell-inner {
+  background: #f8dac4 !important;
+  
+}
+
+.ant-btn-primary {
+background-color: #27c456 !important;
+border-color: #1f9643e5 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
 .card {
   padding: 20px;
   backdrop-filter: blur(3px) saturate(280%);

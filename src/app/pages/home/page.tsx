@@ -19,6 +19,9 @@ const ThinDiscountBanner = dynamic(
     suspense: true,
   }
 );
+const NotifyMe = dynamic(() => import("@/components/Shared/NotifyMe"), {
+  suspense: true,
+});
 const Home = () => {
   const releaseDate = new Date(process.env.NEXT_PUBLIC_OPENING_DATE || "");
   return (
@@ -26,6 +29,7 @@ const Home = () => {
       <Searchbar />
       <MaxDiscountBanner />
       <ThinDiscountBanner />
+      <NotifyMe />
       {/* <Countdown releaseDate={releaseDate}/> */}
     </div>
   );

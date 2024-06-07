@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "rsuite/dist/rsuite-no-reset.min.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { CustomProvider } from "rsuite";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+
 // const inter = Inter({ subsets: ["greek"] });
 const DesktopTopNav = dynamic(
   () => import("@/components/Shared/DesktopTopNav"),
@@ -32,11 +32,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={` prevent-select overflow-x-hidden`}>
         <Suspense fallback={"Loading..."}>
-          <CustomProvider>
+          <AntdRegistry>
             <DesktopTopNav />
             <DistrictList />
             <div>{children}</div>
-          </CustomProvider>
+          </AntdRegistry>
         </Suspense>
       </body>
     </html>

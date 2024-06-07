@@ -2,8 +2,14 @@
 import React, { useReducer, useState } from "react";
 import { TfiTarget } from "react-icons/tfi";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { DateRangePicker } from "rsuite";
-import isAfter from "date-fns/isAfter";
+import { DatePicker } from "antd";
+import dayjs, { Dayjs } from "dayjs";
+import "dayjs/locale/en";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
+// Set the locale globally if needed
+dayjs.locale("en");
 
 const initialState = {
   totalRooms: 1,
@@ -15,6 +21,8 @@ const initialState = {
     },
   ],
 };
+
+const { RangePicker } = DatePicker;
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
@@ -32,7 +40,7 @@ const reducer = (state: any, action: any) => {
       };
     case "DELETE_ROOM":
       if (state.totalRooms === 1) {
-        return state; // Prevent deleting the last room
+        return state;
       }
       return {
         ...state,
@@ -72,14 +80,9 @@ const reducer = (state: any, action: any) => {
 const Searchbar = () => {
   const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {
-    allowedMaxDays,
-    allowedDays,
-    allowedRange,
-    // beforeToday,
-    afterToday,
-    combine,
-  } = DateRangePicker;
+  const [dates, setDates] = useState([]);
+  const [formattedDates, setFormattedDates] = useState<string[]>([]);
+  console.log(dates, formattedDates);
 
   const recentSearch = [
     {
@@ -125,27 +128,12 @@ const Searchbar = () => {
     dispatch({ type: "DECREASE_GUEST", payload: index });
   };
 
+  const getTomorrow = () => {
+    return dayjs().add(1, "day");
+  };
 
-  interface DateObject {
-    day: number;
-    month: number;
-    year: number;
-}
-function getTomorrow(): Date {
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  return tomorrow;
-}
-
-// Function to disable dates before today
-function beforeToday(date: Date): boolean {
-  const today = new Date();
-  return date < today;
-}
-
-const today = new Date();
-const tomorrow = getTomorrow();
+  // Format date as "Day, Date Month"
+const dateFormatter = "ddd, D MMM"
 
   return (
     <div>
@@ -170,21 +158,38 @@ const tomorrow = getTomorrow();
               <span>Near me</span>
             </p>
           </div>
-          <div className="flex p-2.5 gap-1 items-center flex-grow border-b md:border-r border-[#969696] md:border-b-0 h-auto md:h-full w-full md:w-auto whitespace-nowrap">
+          <div className="flex p-2.5 gap-1 items-center justify-start min-w-[27.2%] mx-a border-b md:border-r border-[#969696] md:border-b-0 h-auto md:h-full w-full md:w-auto whitespace-nowrap">
             {/* <p>Tue, 4 Jun</p>
             <p>-</p>
             <p>Wed, 5 Jun</p> */}
-            <DateRangePicker
-              format="MMM dd, yyyy"
-              shouldDisableDate={beforeToday}
-              className="w-full border-none custom-date-range-picker"
-              defaultValue={[today, tomorrow]}
+            <RangePicker
+              style={{
+                width:"100%",
+                border: "none",
+                padding: "0px",
+              }}
+              size="large"
+              format={dateFormatter}
+              defaultValue={[dayjs(), dayjs().add(1, "day")]}
+              onChange={(dates, dateStrings) => {
+                // Check if both start and end dates are selected
+                if (dates && dates[0] && dates[1]) {
+                  const formattedDates = [
+                    `Start Date: ${dates[0].format("YYYY-MM-DD")}`,
+                    `End Date: ${dates[1].format("YYYY-MM-DD")}`,
+                  ];
+                  setFormattedDates(formattedDates);
+                } else {
+                  // Clear the formatted dates if no selection is made
+                  setFormattedDates([]);
+                }
+              }}
             />
           </div>
-          <div className=" flex p-2.5 gap-1 items-center flex-grow h-auto md:h-full w-full md:w-auto whitespace-nowrap relative">
+          <div className=" flex p-2.5 gap-1 items-center  h-auto md:h-full min-w-[22%] w-full md:w-auto whitespace-nowrap relative">
             <div
               onClick={() => setGuestDropdownOpen(!isGuestDropdownOpen)}
-              className="cursor-pointer flex  gap-4 items-center flex-grow h-auto md:h-full w-full"
+              className="cursor-pointer flex  gap-4 items-center h-auto md:h-full w-full"
             >
               <p className="w-14">
                 <span className="">{state.totalRooms}</span> Room

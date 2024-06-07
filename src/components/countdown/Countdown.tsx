@@ -58,7 +58,7 @@ const Countdown: React.FC<CountdownProps> = ({ releaseDate }) => {
   }, [isChange]);
 
   return (
-    <main className='  bg-[url(/bg.jpg)] bg-cover bg-center h-full md:h-screen'>
+    <main className='  bg-[url(https://static.javatpoint.com/tourist-places/images/tourist-places-in-bangladesh1.jpg)] bg-cover bg-center h-full md:h-screen'>
       <div className='bg-black bg-opacity-45'>
         <div className=' hidden md:block absolute right-5 top-5'>
           <Image
