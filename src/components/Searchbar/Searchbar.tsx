@@ -2,6 +2,8 @@
 import React, { useReducer, useState } from "react";
 import { TfiTarget } from "react-icons/tfi";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { DateRangePicker } from "rsuite";
+import isAfter from "date-fns/isAfter";
 
 const initialState = {
   totalRooms: 1,
@@ -35,7 +37,9 @@ const reducer = (state: any, action: any) => {
       return {
         ...state,
         totalRooms: state.totalRooms - 1,
-        totalGuests: state.totalGuests - state.roomAndGuests[state.roomAndGuests.length - 1].totalGuest,
+        totalGuests:
+          state.totalGuests -
+          state.roomAndGuests[state.roomAndGuests.length - 1].totalGuest,
         roomAndGuests: state.roomAndGuests.slice(0, -1),
       };
     case "INCREASE_GUEST":
@@ -68,6 +72,14 @@ const reducer = (state: any, action: any) => {
 const Searchbar = () => {
   const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    allowedMaxDays,
+    allowedDays,
+    allowedRange,
+    // beforeToday,
+    afterToday,
+    combine,
+  } = DateRangePicker;
 
   const recentSearch = [
     {
@@ -113,6 +125,28 @@ const Searchbar = () => {
     dispatch({ type: "DECREASE_GUEST", payload: index });
   };
 
+
+  interface DateObject {
+    day: number;
+    month: number;
+    year: number;
+}
+function getTomorrow(): Date {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return tomorrow;
+}
+
+// Function to disable dates before today
+function beforeToday(date: Date): boolean {
+  const today = new Date();
+  return date < today;
+}
+
+const today = new Date();
+const tomorrow = getTomorrow();
+
   return (
     <div>
       <div className="py-10 bg-[url(./../assets/images/bannerwallp.jpg)] bg-no-repeat bg-cover bg-bottom flex md:flex-col gap-6 items-center justify-center">
@@ -120,8 +154,8 @@ const Searchbar = () => {
           Over 174,000+ Hotels and Homes across 35+ Countries
         </h1>
         {/* ----------Searchbar start------------------- */}
-        <div className="h-auto flex flex-col md:flex-row items-center justify-evenly bg-white w-full md:w-[74.5%] mx-4 md:mx-[15.5em] rounded-md font-semibold">
-          <div className="flex flex-col md:flex-row items-center justify-between flex-grow border-b md:border-r border-[#969696] md:border-b-0 h-auto md:h-[58px] p-2.5 md:px-[10px] w-full md:w-auto">
+        <div className="h-auto flex flex-col md:flex-row items-center justify-evenly bg-white w-full md:w-[74.5%] mx-4 md:mx-[15.5em] rounded-md font-semibold md:h-[58px]">
+          <div className="flex flex-col md:flex-row items-center justify-between flex-grow border-b md:border-r border-[#969696] md:border-b-0 h-auto  p-2.5 md:px-[10px] w-full md:w-auto">
             <p className="w-full md:w-[70%] h-[96%] mb-2 md:mb-0">
               <input
                 className="focus:ring-blue-500 focus:outline-none border-none focus:ring-0 focus:border-none md:min-w-[300px] w-full h-full p-2.5 placeholder:text-[#757575]"
@@ -137,17 +171,28 @@ const Searchbar = () => {
             </p>
           </div>
           <div className="flex p-2.5 gap-1 items-center flex-grow border-b md:border-r border-[#969696] md:border-b-0 h-auto md:h-full w-full md:w-auto whitespace-nowrap">
-            <p>Tue, 4 Jun</p>
+            {/* <p>Tue, 4 Jun</p>
             <p>-</p>
-            <p>Wed, 5 Jun</p>
+            <p>Wed, 5 Jun</p> */}
+            <DateRangePicker
+              format="MMM dd, yyyy"
+              shouldDisableDate={beforeToday}
+              className="w-full border-none custom-date-range-picker"
+              defaultValue={[today, tomorrow]}
+            />
           </div>
           <div className=" flex p-2.5 gap-1 items-center flex-grow h-auto md:h-full w-full md:w-auto whitespace-nowrap relative">
             <div
               onClick={() => setGuestDropdownOpen(!isGuestDropdownOpen)}
               className="cursor-pointer flex  gap-4 items-center flex-grow h-auto md:h-full w-full"
             >
-              <p className="w-14"><span className="">{state.totalRooms}</span> Room</p>
-              <p className="w-10"> <span className="">{state.totalGuests} </span>Guest</p>
+              <p className="w-14">
+                <span className="">{state.totalRooms}</span> Room
+              </p>
+              <p className="w-10">
+                {" "}
+                <span className="">{state.totalGuests} </span>Guest
+              </p>
             </div>
             <ul
               className={`${
@@ -244,7 +289,9 @@ const Searchbar = () => {
         {/* --------- Search history Start---------------*/}
         <div className="md:w-[74.5%] mx-4 md:mx-[15.5em]">
           <div className="flex items-center gap-[24px] text-white">
-            <p className="text-[16px] font-bold whitespace-nowrap">Continue your search</p>
+            <p className="text-[16px] font-bold whitespace-nowrap">
+              Continue your search
+            </p>
             <div className="flex items-center gap-[10px]">
               {recentSearch?.slice(0, 4)?.map((search, ind) => (
                 <p
