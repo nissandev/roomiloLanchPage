@@ -6,6 +6,7 @@ import { DatePicker } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/en";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import DesktopScrollNavbar from "../Shared/DesktopScrroledNavbar";
 
 dayjs.extend(customParseFormat);
 // Set the locale globally if needed
@@ -133,7 +134,7 @@ const Searchbar = () => {
   };
 
   // Format date as "Day, Date Month"
-const dateFormatter = "ddd, D MMM"
+  const dateFormatter = "ddd, D MMM";
 
   return (
     <div>
@@ -164,7 +165,7 @@ const dateFormatter = "ddd, D MMM"
             <p>Wed, 5 Jun</p> */}
             <RangePicker
               style={{
-                width:"100%",
+                width: "100%",
                 border: "none",
                 padding: "0px",
               }}
@@ -315,6 +316,18 @@ const dateFormatter = "ddd, D MMM"
         </div>
         {/* --------- Search history End---------------*/}
       </div>
+      <DesktopScrollNavbar
+        RangePicker={RangePicker}
+        dateFormatter={dateFormatter}
+        handleAddRoom={handleAddRoom}
+        handleDecreaseGuest={handleDecreaseGuest}
+        handleDeleteRoom={handleDeleteRoom}
+        handleIncreaseGuest={handleIncreaseGuest}
+        isGuestDropdownOpen={isGuestDropdownOpen}
+        setFormattedDates={setFormattedDates}
+        setGuestDropdownOpen={setGuestDropdownOpen}
+        state={state}
+      />
     </div>
   );
 };

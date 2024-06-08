@@ -24,8 +24,8 @@ body {
 }
 
 /* Override placeholder text color for RangePicker */
-.ant-picker .ant-picker-input > input::placeholder {
-  color: #999; /* Change to your desired color */
+.ant-picker-input>input{
+width: 1px;
 }
 
 .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before,
@@ -44,7 +44,18 @@ border-color: #1f9643e5 !important;
 }
 
 
+.slide-down {
+  animation: slideDown 0.5s ease;
+}
 
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 
 
 

@@ -5,7 +5,7 @@ import locationImg from "../../assets/images/locations.avif";
 const AroundAlwaysSection = () => {
   return (
 
-      <div className="bg-[#F3F5F7] -mt-[32px] mx-auto">
+      <div className="bg-[#F3F5F7] -mt-[32px] mx-auto overflow-x-hidden">
         <div className=" mx-[71px] py-[40px] flex items-cente justify-between w-full gap-16">
           <div className="w-full flex items-center  justify-center">
             <Image src={locationImg} alt="Locations" className="object-cover max-w-[680px] h-[380px] p-3" />
