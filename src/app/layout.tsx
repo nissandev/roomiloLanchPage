@@ -3,6 +3,7 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import DesktopFooter from "@/components/Shared/DesktopFooter";
 
 // const inter = Inter({ subsets: ["greek"] });
 const DesktopTopNav = dynamic(
@@ -36,6 +37,7 @@ export default function RootLayout({
             <DesktopTopNav />
             <DistrictList />
             <div>{children}</div>
+            <DesktopFooter/>
           </AntdRegistry>
         </Suspense>
       </body>

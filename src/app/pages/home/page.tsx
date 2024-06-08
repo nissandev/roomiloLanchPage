@@ -1,3 +1,4 @@
+import AroundAlwaysSection from "@/components/Shared/AroundAlwaysSection";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -30,6 +31,7 @@ const Home = () => {
       <MaxDiscountBanner />
       <ThinDiscountBanner />
       <NotifyMe />
+      <AroundAlwaysSection/>
       {/* <Countdown releaseDate={releaseDate}/> */}
     </div>
   );

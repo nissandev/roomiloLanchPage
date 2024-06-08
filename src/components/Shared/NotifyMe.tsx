@@ -116,7 +116,7 @@ const NotifyMe = () => {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <p>
+          <div>
             <div className="relative w-[326px]">
               <input
                 name="email"
@@ -129,7 +129,7 @@ const NotifyMe = () => {
                Your Email
               </span>
             </div>
-          </p>
+          </div>
           <button
             type="button"
             className="h-[48px] bg-[#f26600] text-white font-bold px-[40px] rounded-md"
