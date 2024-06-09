@@ -16,10 +16,13 @@ interface Props {
   handleIncreaseGuest: (index: number) => void;
   handleDeleteRoom: () => void;
   handleAddRoom: () => void;
+  handleLocationSearch:(event:any)=>void;
   dateFormatter: string;
+  searchedLocation:string;
   RangePicker: any; // You should replace `any` with the actual type of RangePicker
   setFormattedDates: (dates: string[]) => void;
   setGuestDropdownOpen: (isOpen: boolean) => void;
+  setSearchLocation:(location:any)=>void;
   isGuestDropdownOpen: boolean;
   state: {
     totalRooms: number;
@@ -35,6 +38,9 @@ const DesktopScrollNavbar: React.FC<Props> = ({
   handleAddRoom,
   dateFormatter,
   RangePicker,
+  searchedLocation,
+  setSearchLocation,
+  handleLocationSearch,
   setFormattedDates,
   setGuestDropdownOpen,
   isGuestDropdownOpen,
@@ -58,7 +64,7 @@ const DesktopScrollNavbar: React.FC<Props> = ({
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    const showAtHeight = 200; // Change this to the specific height you want
+    const showAtHeight = 200;
     setShowNavbar(scrollPosition > showAtHeight);
   };
 
@@ -71,28 +77,31 @@ const DesktopScrollNavbar: React.FC<Props> = ({
       showNavbar ? "visible slide-down" : "hidden"
     }`}>
       <div className="h-[70px] flex items-center">
-        <div className="flex items-center justify- mx-[40px] w-full">
+        <div className="flex items-center justify- mx-[20px] w-full">
           <div>
             <h1 className="text-[32px] font-extrabold text-[#f26600]">Roomilo</h1>
           </div>
           {/*----------------- Search bar start---------------*/}
           <div className="h-auto flex flex-col md:flex-row items-center justify-evenly bg-white w-full md:w-full mx-4 border rounded-md font-semibold md:h-[47px]">
-            <div className="flex flex-col md:flex-row items-center flex-grow justify-between flex- border-b md:border-r border-[#969696] md:border-b-0 h-auto md:px-[10px] w-full md:w-auto">
-              <p className=" h-[45px] md:mb-0">
+            <div className="flex flex-col md:flex-row items-center justify-between flex-grow border-b md:border-r border-[#969696] md:border-b-0 h-auto 2xl:px-[10px] w-full md:w-auto">
+              <p className=" h-[45px] 2xl:min-w-[200px] md:mb-0">
                 <input
-                  className="focus:ring-blue-500 focus:outline-none border-none focus:ring-0 focus:border-none w-full h-full p-2.5 placeholder:text-[#757575]"
+                  className="focus:ring-blue-500 focus:outline-none border-none md:w-[150%] focus:ring-0 focus:border-none w-[100%] h-full p-2.5 placeholder:text-[#757575]"
                   type="text"
                   placeholder="Search by city, hotel or neighborhood"
+                  onChange={handleLocationSearch}
                 />
               </p>
-              <p className="flex items-center gap-1 bg-gray-200 rounded-full px-2 py-1 text-[12px] h-fit whitespace-nowrap">
-                <span>
-                  <TfiTarget />
-                </span>
-                <span>Near me</span>
-              </p>
+              {!searchedLocation ? <p className="2xl:min-w-[80px] flex items-center gap-1 bg-gray-200 rounded-full px-2 2xl:py-1 text-[12px] h-fit whitespace-nowrap">
+              <span>
+                <TfiTarget />
+              </span>
+              <span>Near me</span>
+            </p>:<p onClick={()=>setSearchLocation('')} className="min-w-[80px] flex items-center justify-end text-xl font-thin cursor-pointer text-gray-500 h-fit whitespace-nowrap">
+              <span>X</span>
+            </p>}
             </div>
-            <div className="flex p-2.5 gap-1 items-center  justify-start  mx-a border-b md:border-r border-[#969696] md:border-b-0 h-auto md:h-full min-w-[230px] whitespace-nowrap">
+            <div className="flex p-2.5 gap-1 items-center flex-grow  justify-start  mx-a border-b md:border-r border-[#969696] md:border-b-0 h-auto md:h-full w-[150px] 2xl:min-w-[230px] whitespace-nowrap">
               {/* <p>Tue, 4 Jun</p>
             <p>-</p>
             <p>Wed, 5 Jun</p> */}
@@ -102,11 +111,10 @@ const DesktopScrollNavbar: React.FC<Props> = ({
                   border: "none",
                   padding: "0px",
                 }}
-                size="large"
+                size="small"
                 format={dateFormatter}
                 defaultValue={[dayjs(), dayjs().add(1, "day")]}
                 onChange={(dates:any, dateStrings:string) => {
-                  // Check if both start and end dates are selected
                   if (dates && dates[0] && dates[1]) {
                     const formattedDates = [
                       `Start Date: ${dates[0].format("YYYY-MM-DD")}`,
@@ -114,13 +122,12 @@ const DesktopScrollNavbar: React.FC<Props> = ({
                     ];
                     setFormattedDates(formattedDates);
                   } else {
-                    // Clear the formatted dates if no selection is made
                     setFormattedDates([]);
                   }
                 }}
               />
             </div>
-            <div className=" flex p-2.5 gap-1 items-center min-w-[200px] flex-grow h-auto md:h-full w-full md:w-auto whitespace-nowrap relative">
+            <div className=" flex p-2.5 gap-1 items-center min-w-[160px] 2xl:min-w-[200px] flex-grow h-auto md:h-full w-full md:w-auto whitespace-nowrap relative">
               <div
                 onClick={() => setGuestDropdownOpen(!isGuestDropdownOpen)}
                 className="cursor-pointer flex  gap-4 items-center h-auto md:h-full w-full"
@@ -136,7 +143,7 @@ const DesktopScrollNavbar: React.FC<Props> = ({
               <ul
                 className={`${
                   isGuestDropdownOpen ? "opacity-100" : "opacity-0 hidden"
-                } transition-all duration-700 absolute top-16 left-0 bg-white w-full px-2 z-1 rounded shadow-md font-normal text-[14px]`}
+                } transition-all duration-700 absolute top-16 left-0 bg-white 2xl:w-full px-2 z-1 rounded shadow-md font-normal text-[14px]`}
               >
                 <li className="flex items-center justify-around py-4 font-semibold border-b">
                   <p>Rooms</p>

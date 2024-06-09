@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import maxDiscount from '../../assets/images/Roomilo.png'
+import maxDiscount from '../../assets/images/maxdiscount.png'
 
 const MaxDiscountBanner = () => {
     return (

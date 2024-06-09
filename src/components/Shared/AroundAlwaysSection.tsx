@@ -22,12 +22,12 @@ const AroundAlwaysSection = () => {
                 <div className="flex items-center gap-[26px]">
                   <div className=" transform skew-x-[-30deg] border-r  pr-4 border-gray-400 leading-none ">
                     <div className="transform skew-x-[30deg] pr-[16px]">
-                      <p className="text-[32px] font-semibold ">35+</p>
+                      <p className="text-[32px] font-semibold ">6+</p>
                       <p className="text-[14px] text-gray-600">Countries</p>
                     </div>
                   </div>
                   <div className=" leading-none">
-                    <p className="text-[32px] font-semibold">174,000+</p>
+                    <p className="text-[32px] font-semibold">40,000+</p>
                     <p className="text-[14px] text-gray-600">Hotels & Homes</p>
                   </div>
                 </div>

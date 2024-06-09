@@ -1,4 +1,4 @@
-import AroundAlwaysSection from "@/components/Shared/AroundAlwaysSection";
+"use client";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -23,6 +23,12 @@ const ThinDiscountBanner = dynamic(
 const NotifyMe = dynamic(() => import("@/components/Shared/NotifyMe"), {
   suspense: true,
 });
+const AroundAlwaysSection = dynamic(
+  () => import("@/components/Shared/AroundAlwaysSection"),
+  {
+    suspense: true,
+  }
+);
 const Home = () => {
   const releaseDate = new Date(process.env.NEXT_PUBLIC_OPENING_DATE || "");
   return (
@@ -31,7 +37,7 @@ const Home = () => {
       <MaxDiscountBanner />
       <ThinDiscountBanner />
       <NotifyMe />
-      <AroundAlwaysSection/>
+      <AroundAlwaysSection />
       {/* <Countdown releaseDate={releaseDate}/> */}
     </div>
   );

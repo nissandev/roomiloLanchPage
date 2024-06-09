@@ -83,6 +83,7 @@ const Searchbar = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [dates, setDates] = useState([]);
   const [formattedDates, setFormattedDates] = useState<string[]>([]);
+  const [searchedLocation, setSearchLocation] = useState<string>('');
   console.log(dates, formattedDates);
 
   const recentSearch = [
@@ -129,40 +130,45 @@ const Searchbar = () => {
     dispatch({ type: "DECREASE_GUEST", payload: index });
   };
 
-  const getTomorrow = () => {
-    return dayjs().add(1, "day");
-  };
+
+  const handleLocationSearch =(e:any)=>{
+    const searchedArea = e.target.value
+    setSearchLocation(searchedArea)
+  }
+
 
   // Format date as "Day, Date Month"
   const dateFormatter = "ddd, D MMM";
 
   return (
     <div>
+      {/* Fix */}
       <div className="py-10 bg-[url(./../assets/images/bannerwallp.jpg)] bg-no-repeat bg-cover bg-bottom flex md:flex-col gap-6 items-center justify-center">
         <h1 className=" text-[32px] text-white font-extrabold">
-          Over 174,000+ Hotels and Homes across 35+ Countries
+        Unparalleled Growth and Excellence of Asia&apos;s Fastest-Growing Hotel Chain!
         </h1>
         {/* ----------Searchbar start------------------- */}
         <div className="h-auto flex flex-col md:flex-row items-center justify-evenly bg-white w-full md:w-[74.5%] mx-4 md:mx-[15.5em] rounded-md font-semibold md:h-[58px]">
           <div className="flex flex-col md:flex-row items-center justify-between flex-grow border-b md:border-r border-[#969696] md:border-b-0 h-auto  p-2.5 md:px-[10px] w-full md:w-auto">
             <p className="w-full md:w-[70%] h-[96%] mb-2 md:mb-0">
               <input
-                className="focus:ring-blue-500 focus:outline-none border-none focus:ring-0 focus:border-none md:min-w-[300px] w-full h-full p-2.5 placeholder:text-[#757575]"
+                className="focus:ring-blue-500 focus:outline-none border focus:ring-0 focus:border-none md:min-w-[300px] md:w-[120%] h-full p-2.5 placeholder:text-[#757575]"
                 type="text"
+                value={searchedLocation}
                 placeholder="Search by city, hotel or neighborhood"
+                onChange={handleLocationSearch}
               />
             </p>
-            <p className="flex items-center gap-1 bg-gray-200 rounded-full px-2 py-1 text-[12px] h-fit whitespace-nowrap">
+            {!searchedLocation ? <p className="flex items-center gap-1 bg-gray-200 rounded-full px-2 py-1 text-[12px] h-fit whitespace-nowrap">
               <span>
                 <TfiTarget />
               </span>
               <span>Near me</span>
-            </p>
+            </p>:<p onClick={()=>setSearchLocation('')}  className=" text-xl font-normal h-fit whitespace-nowrap">
+              <span>X</span>
+            </p>}
           </div>
           <div className="flex p-2.5 gap-1 items-center justify-start min-w-[27.2%] mx-a border-b md:border-r border-[#969696] md:border-b-0 h-auto md:h-full w-full md:w-auto whitespace-nowrap">
-            {/* <p>Tue, 4 Jun</p>
-            <p>-</p>
-            <p>Wed, 5 Jun</p> */}
             <RangePicker
               style={{
                 width: "100%",
@@ -173,15 +179,13 @@ const Searchbar = () => {
               format={dateFormatter}
               defaultValue={[dayjs(), dayjs().add(1, "day")]}
               onChange={(dates, dateStrings) => {
-                // Check if both start and end dates are selected
                 if (dates && dates[0] && dates[1]) {
                   const formattedDates = [
-                    `Start Date: ${dates[0].format("YYYY-MM-DD")}`,
-                    `End Date: ${dates[1].format("YYYY-MM-DD")}`,
+                    `Start Date: ${dates[0]}`,
+                    `End Date: ${dates[1]}`,
                   ];
                   setFormattedDates(formattedDates);
                 } else {
-                  // Clear the formatted dates if no selection is made
                   setFormattedDates([]);
                 }
               }}
@@ -316,8 +320,12 @@ const Searchbar = () => {
         </div>
         {/* --------- Search history End---------------*/}
       </div>
+      {/*-----------------------Scrolled always to navbar--------------------------- */}
       <DesktopScrollNavbar
         RangePicker={RangePicker}
+        setSearchLocation={setSearchLocation}
+        searchedLocation={searchedLocation}
+        handleLocationSearch={handleLocationSearch}
         dateFormatter={dateFormatter}
         handleAddRoom={handleAddRoom}
         handleDecreaseGuest={handleDecreaseGuest}
