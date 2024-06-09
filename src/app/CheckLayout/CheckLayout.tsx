@@ -2,6 +2,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import InitialLoader from "../../components/Loaders/InitialLoader";
+import { useWindowWidth } from "../hooks/useWindowWidth";
 
 interface CheckLayoutProps {
   children: ReactNode;
@@ -18,28 +19,7 @@ const MobileLayout = dynamic(() => import("../MobileLayout/MobileLayout"), {
 });
 
 const CheckLayout: React.FC<CheckLayoutProps> = ({ children }) => {
-  const [currentWidth, setWindowWidth] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    // Check if window is defined before adding event listener
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
-      handleResize(); // Call handleResize once to set the initial width
-    }
-
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleResize);
-      }
-    };
-  }, []);
-
-  console.log({ currentWidth });
-
+  const currentWidth = useWindowWidth();
   return (
     <div>
       {currentWidth !== null && (
