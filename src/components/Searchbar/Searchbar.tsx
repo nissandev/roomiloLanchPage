@@ -152,7 +152,7 @@ const Searchbar = () => {
           <div className="flex flex-col md:flex-row items-center justify-between flex-grow border-b md:border-r border-[#969696] md:border-b-0 h-auto  p-2.5 md:px-[10px] w-full md:w-auto">
             <p className="w-full md:w-[70%] h-[96%] mb-2 md:mb-0">
               <input
-                className="focus:ring-blue-500 focus:outline-none border focus:ring-0 focus:border-none md:min-w-[300px] md:w-[120%] h-full p-2.5 placeholder:text-[#757575]"
+                className="focus:ring-blue-500 focus:outline-none focus:ring-0 focus:border-none md:min-w-[300px] md:w-[120%] h-full p-2.5 placeholder:text-[#757575]"
                 type="text"
                 value={searchedLocation}
                 placeholder="Search by city, hotel or neighborhood"

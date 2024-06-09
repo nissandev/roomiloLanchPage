@@ -1,19 +1,10 @@
-
 import type { Metadata } from "next";
 import "./globals.css";
-import dynamic from "next/dynamic";
-import { Suspense} from "react";
+import { Suspense } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import DesktopFooter from "@/components/Shared/DesktopFooter";
+import CheckLayout from "./CheckLayout/CheckLayout";
 
 // const inter = Inter({ subsets: ["greek"] });
-const DesktopTopNav = dynamic(
-  () => import("@/components/Shared/DesktopTopNav"),
-  { suspense: true }
-);
-const DistrictList = dynamic(() => import("@/components/Shared/DistrictList"), {
-  suspense: true,
-});
 
 export const metadata: Metadata = {
   title: "Roomilo || Your Travel Solution ",
@@ -35,10 +26,7 @@ export default function RootLayout({
       <body className={` prevent-select overflow-x-hidden`}>
         <Suspense fallback={"Loading..."}>
           <AntdRegistry>
-            <DesktopTopNav />
-            <DistrictList />
-            <div>{children}</div>
-            <DesktopFooter />
+            <CheckLayout>{children}</CheckLayout>
           </AntdRegistry>
         </Suspense>
       </body>
