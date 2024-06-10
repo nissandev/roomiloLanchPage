@@ -15,6 +15,7 @@ const Home = () => {
   return (
     <>
       {currentWidth !== null && currentWidth > 1200 ? (
+        /*Desktop home page*/ 
         <div>
           <Searchbar />
           <MaxDiscountBanner />

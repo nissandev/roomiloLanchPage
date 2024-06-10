@@ -10,7 +10,6 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   return (
     <div>
       {children}
-      Mobile
       <BottomNavbar/>
     </div>
   );
