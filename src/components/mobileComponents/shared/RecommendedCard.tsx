@@ -18,7 +18,9 @@ const RecommendedCard = () => {
       price:7247,
       discountPrice:1767,
       discount:20,
-      tex_fees:'+ 256 taxes & fees'
+      totalBooking:2000,
+      tex_fees:'+ 256 taxes & fees',
+      rating:4.6
     },
     {
         hotelImg: hotel_r2,
@@ -28,6 +30,8 @@ const RecommendedCard = () => {
         price:8247,
         discountPrice:8067,
         discount:10,
+        totalBooking:100,
+        rating:3.6,
         tex_fees:'+ 256 taxes & fees'
       },
       {
@@ -38,6 +42,8 @@ const RecommendedCard = () => {
         price:7247,
         discountPrice:1767,
         discount:20,
+        totalBooking:2000,
+        rating:4.6,
         tex_fees:'+ 256 taxes & fees'
       },
       {
@@ -48,6 +54,8 @@ const RecommendedCard = () => {
         price:7247,
         discountPrice:1767,
         discount:20,
+        totalBooking:2000,
+        rating:4.6,
         tex_fees:'+ 256 taxes & fees'
       },
       {
@@ -58,6 +66,8 @@ const RecommendedCard = () => {
         price:7247,
         discountPrice:1767,
         discount:20,
+        totalBooking:2000,
+        rating:4.6,
         tex_fees:'+ 256 taxes & fees'
       },
 
@@ -84,9 +94,9 @@ const RecommendedCard = () => {
                   {recommended?.hotelTag}
                 </p>
               </div>
-              <div className="absolute -bottom-1.5 bg-white border h-[12px] w-[60px] rounded-sm left-2">
-                <p className="  text-[#f26600] text-center text-[6px] whitespace-nowrap  w-fit mx-auto">
-                 <span><FaRegStar/></span> {recommended?.hotelTag}
+              <div className="absolute -bottom-1.5 bg-white border h-[12px] w-[60px] flex items-center justify-center rounded-sm left-2">
+                <p className="  text-[#f26600] text-center text-[6px] whitespace-nowrap  w-fit mx-auto gap-1 flex items-center">
+                 <span><FaRegStar/></span> <span>{recommended?.rating}</span> <span>({recommended?.totalBooking})</span>
                 </p>
               </div>
             </div>
