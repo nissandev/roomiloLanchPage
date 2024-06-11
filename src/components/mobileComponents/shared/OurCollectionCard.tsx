@@ -84,7 +84,7 @@ const OurCollectionCard: React.FC = () => {
                   height={96}
                   className="rounded-md object-cover"
                 />
-                <h3 className="h-full uppercase absolute bg-black/30 text-white top-0 w-full flex items-center justify-center text-[8px] font-bold">
+                <h3 className="h-full uppercase absolute rounded-md bg-black/30 text-white top-0 w-full flex items-center justify-center text-[8px] font-bold">
                   {collection?.overlayText}
                 </h3>
               </div>
