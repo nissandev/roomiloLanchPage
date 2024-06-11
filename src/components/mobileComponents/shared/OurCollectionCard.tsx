@@ -89,8 +89,10 @@ const OurCollectionCard:React.FC = () => {
                 height={96}
                 className="rounded-md object-cover"
               />
-              <div className="absolute top-3 bg-yellow-600 border h-[12px] border-[#f26600] border-b-0 w-[60px] rounded-sm -left-1">
-                <p className="uppercase h-[10px] bg-yellow-600 text- text-center text-[6px] border-b whitespace-nowrap  w-fit mx-auto rounded">
+              <div className="absolute top-3 bg-yellow-600  h-[12px] w-[60px] rounded-[1px] -left-[4px] flex items-center justify-center">
+                <div className="bg-yellow-700 -z-10 r  rounded-r-none h-full w-[7%] top-[5px] absolute left-0"></div>
+                <div className="bg-white r  rounded-r-none h-full w-[7%] top-[8px] -z-10 absolute -left-[3px] -rotate-45"></div>
+                <p className="uppercase bg-yellow-600 text- text-center text-[6px] mt-[1.5px] whitespace-nowrap  w-fit mx-auto font-semibold text-white">
                   {recommended?.hotelTag}
                 </p>
               </div>
