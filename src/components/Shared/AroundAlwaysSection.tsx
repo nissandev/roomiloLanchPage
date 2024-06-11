@@ -1,9 +1,9 @@
 'use client'
 import Image from "next/image";
 import React from "react";
-import locationImg from "../../assets/images/locations.avif";
+import locationImg from "../../assets/images/location.png";
 
-const AroundAlwaysSection = () => {
+const AroundAlwaysSection:React.FC = () => {
   return (
 
       <div className="bg-[#F3F5F7] -mt-[32px] mx-auto overflow-x-hidden">
