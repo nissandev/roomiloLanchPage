@@ -90,7 +90,7 @@ const RecommendedCard = () => {
                 className="rounded-md object-cover"
               />
               <div className="absolute top-3 bg-black border h-[12px] border-white border-b-0 w-[60px] rounded-sm -left-1">
-                <p className="uppercase h-[10px] bg-black text-[#f26600] text-center text-[6px] border-b whitespace-nowrap  w-fit mx-auto rounded">
+                <p className="uppercase h-[10px] bg-black text-white text-center text-[6px] border-b border-[#f26600] whitespace-nowrap  w-fit mx-auto rounded">
                   {recommended?.hotelTag}
                 </p>
               </div>
