@@ -15,7 +15,7 @@ const DesktopFooter = () => {
             >
               Roomilo
             </span>
-            <span className="text-[22px] font-bold">
+            <span className="text-[22px] font-bold pt-1">
               World&apos;s leading chain of hotels and homes
             </span>
           </div>
