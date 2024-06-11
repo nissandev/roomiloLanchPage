@@ -8,14 +8,14 @@ import hotel_r5 from "../../../assets/hotelImages/hotel_r1.jpg";
 import { FaRegStar } from "react-icons/fa";
 
 const OurCollectionCard: React.FC = () => {
-  const recommendedHotel = [
+  const ourCollection = [
     {
       hotelImg: hotel_r1,
       serviceTitle: "Company Serviced",
       hotelTag: "Premium",
       serviceSubTitle: "Roomilo Service Premium",
       typeOfPlace: "hotels",
-      overlayText:'company Service',
+      overlayText: "company Service",
       rating: 4.6,
     },
     {
@@ -24,7 +24,7 @@ const OurCollectionCard: React.FC = () => {
       hotelTag: "Relaxation",
       serviceSubTitle: "Modern & Stylish",
       typeOfPlace: "home stays",
-      overlayText:'Home',
+      overlayText: "Home",
       rating: 4.6,
     },
     {
@@ -32,7 +32,7 @@ const OurCollectionCard: React.FC = () => {
       serviceTitle: "Collection O",
       hotelTag: "Premium",
       serviceSubTitle: "Premium Business",
-      overlayText:'Collection O',
+      overlayText: "Collection O",
       typeOfPlace: "stays",
       rating: 4.6,
     },
@@ -41,7 +41,7 @@ const OurCollectionCard: React.FC = () => {
       serviceTitle: "Spot On",
       hotelTag: "Town House",
       serviceSubTitle: "Comfortable Budget",
-      overlayText:'Spot On',
+      overlayText: "Spot On",
       typeOfPlace: "stays",
       rating: 4.6,
     },
@@ -50,7 +50,7 @@ const OurCollectionCard: React.FC = () => {
       serviceTitle: "Capital O",
       hotelTag: "premium",
       serviceSubTitle: "Beautiful Design",
-      overlayText:'C O',
+      overlayText: "C O",
       typeOfPlace: "stays",
       rating: 4.6,
     },
@@ -59,7 +59,7 @@ const OurCollectionCard: React.FC = () => {
       serviceTitle: "Roomilo Townhouse",
       hotelTag: "premium",
       serviceSubTitle: "Chic stays at the most",
-      overlayText:'Townhouse',
+      overlayText: "Townhouse",
       typeOfPlace: "affordable stays",
       rating: 4.6,
     },
@@ -73,24 +73,26 @@ const OurCollectionCard: React.FC = () => {
         </h1>
       </div>
       <div className="flex w-full px-2 gap-4 overflow-x-auto">
-        {recommendedHotel?.map((recommended, ind) => (
+        {ourCollection?.map((collection, ind) => (
           <div className="shrink-0" key={ind}>
             <div className="relative">
               <div className="relative">
                 <Image
-                  src={recommended?.hotelImg}
+                  src={collection?.hotelImg}
                   alt="hotel"
                   width={156}
                   height={96}
                   className="rounded-md object-cover"
                 />
-                <h3 className="h-full uppercase absolute bg-black/30 text-white top-0 w-full flex items-center justify-center text-[8px]">{recommended?.overlayText}</h3>
+                <h3 className="h-full uppercase absolute bg-black/30 text-white top-0 w-full flex items-center justify-center text-[8px] font-bold">
+                  {collection?.overlayText}
+                </h3>
               </div>
               <div className="absolute top-3 bg-yellow-600  h-[12px] w-[60px] rounded-[1px] -left-[4px] flex items-center justify-center">
                 <div className="bg-yellow-700 -z-10 r  rounded-r-none h-full w-[7%] top-[5px] absolute left-0"></div>
                 <div className="bg-white r  rounded-r-none h-full w-[7%] top-[8px] -z-10 absolute -left-[3px] -rotate-45"></div>
                 <p className="uppercase bg-yellow-600 text- text-center text-[6px] mt-[1.5px] whitespace-nowrap  w-fit mx-auto font-semibold text-white">
-                  {recommended?.hotelTag}
+                  {collection?.hotelTag}
                 </p>
               </div>
               <div className="absolute -bottom-1.5 bg-white border h-[12px] w-[60px] flex items-center justify-center rounded-sm left-2">
@@ -98,24 +100,24 @@ const OurCollectionCard: React.FC = () => {
                   <span>
                     <FaRegStar className="text-md -mt-[1.3px]" />
                   </span>{" "}
-                  <span>{recommended?.rating} / 5</span>
+                  <span>{collection?.rating} / 5</span>
                 </p>
               </div>
             </div>
             <div>
               <div className="leading-[16px] pt-5">
-                {recommended?.serviceTitle && (
+                {collection?.serviceTitle && (
                   <h1 className="text-[14px] font-bold">
-                    {recommended.serviceTitle.length > 24
-                      ? `${recommended.serviceTitle.slice(0, 20)}...`
-                      : recommended.serviceTitle}
+                    {collection.serviceTitle.length > 24
+                      ? `${collection.serviceTitle.slice(0, 20)}...`
+                      : collection.serviceTitle}
                   </h1>
                 )}
                 <p className="text-[12px] text-gray-500">
-                  {recommended?.serviceSubTitle}
+                  {collection?.serviceSubTitle}
                 </p>
                 <p className="text-[12px] text-gray-500">
-                  {recommended?.typeOfPlace}
+                  {collection?.typeOfPlace}
                 </p>
               </div>
             </div>
