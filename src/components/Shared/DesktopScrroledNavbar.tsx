@@ -372,7 +372,7 @@ const DesktopScrollNavbar: React.FC<Props> = ({
                 <LuPhone />
               </p>
               <div className="leading-none">
-                <p className="font-bold text-[14px]">01629880885</p>
+                <p className="font-semibold text-[14px]">01629880885</p>
                 <span className="text-[12px]">Call us to Book now</span>
               </div>
             </div>
@@ -383,7 +383,7 @@ const DesktopScrollNavbar: React.FC<Props> = ({
             <div>
               <button
                 type="button"
-                className="pl-4 flex font-extrabold gap-1 items-center justify-center"
+                className="pl-4 flex font-semibold gap-1 items-center justify-center"
               >
                 <p>
                   <LuUser className="h-[24px] w-[24px] bg-[#f26600] text-white p-[1px] rounded-full" />

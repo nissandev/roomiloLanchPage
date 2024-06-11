@@ -72,7 +72,7 @@ const DesktopTopNav = () => {
                 <p>
                   <TbWorld className="text-[24px]" />
                 </p>
-                <p className="font-extrabold">
+                <p className="font-semibold">
                   {selectedLanguage === "en" ? "English" : "বাংলা"}
                 </p>
                 <p>
@@ -207,7 +207,7 @@ const DesktopTopNav = () => {
           </div>
           <div>
             <div>
-              <button className="pl-4 flex font-extrabold gap-1 items-center justify-center">
+              <button className="pl-4 flex font-semibold gap-1 items-center justify-center">
                 <p>
                   <LuUser className="h-[24px] w-[24px] bg-white/50 text-white p-[1px] rounded-full" />
                 </p>

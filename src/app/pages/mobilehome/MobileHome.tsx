@@ -5,6 +5,7 @@ import DestinationCard from "../../../components/mobileComponents/ExplorenextDes
 import RecommendedCard from "../../../components/mobileComponents/shared/RecommendedCard";
 import MaxDiscount from "../../../components/mobileComponents/shared/MaxDiscount";
 import OurCollectionCard from "../../../components/mobileComponents/shared/OurCollectionCard";
+import CallToBook from "../../../components/mobileComponents/shared/CallToBook";
 
 const MobileHome = () => {
   return (
@@ -15,6 +16,7 @@ const MobileHome = () => {
       <RecommendedCard/>
       <MaxDiscount/>
       <OurCollectionCard/>
+      <CallToBook/>
     </div>
   );
 };
