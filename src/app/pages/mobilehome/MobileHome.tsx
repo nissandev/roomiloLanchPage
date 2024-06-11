@@ -4,6 +4,7 @@ import SearchCard from "../../../components/mobileComponents/mobileSearchCard/Se
 import DestinationCard from "../../../components/mobileComponents/ExplorenextDestination/DestinationCard";
 import RecommendedCard from "../../../components/mobileComponents/shared/RecommendedCard";
 import MaxDiscount from "../../../components/mobileComponents/shared/MaxDiscount";
+import OurCollectionCard from "../../../components/mobileComponents/shared/OurCollectionCard";
 
 const MobileHome = () => {
   return (
@@ -13,6 +14,7 @@ const MobileHome = () => {
       <DestinationCard />
       <RecommendedCard/>
       <MaxDiscount/>
+      <OurCollectionCard/>
     </div>
   );
 };

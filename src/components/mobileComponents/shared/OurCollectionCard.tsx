@@ -8,7 +8,7 @@ import hotel_r5 from "../../../assets/hotelImages/hotel_r1.jpg";
 import { FaRegStar } from "react-icons/fa";
 
 
-const RecommendedCard = () => {
+const OurCollectionCard:React.FC = () => {
   const recommendedHotel = [
     {
       hotelImg: hotel_r1,
@@ -76,9 +76,9 @@ const RecommendedCard = () => {
   return (
     <div className="px-[3.8%] py-[3.8%]">
       <div>
-        <h1 className="font-bold text-[18px] mb-[3%]">Recommended for you</h1>
+        <h1 className="font-bold text-[18px] mt-[4%] mb-[3%]">Our Collections</h1>
       </div>
-      <div className="flex px-2 gap-4 overflow-x-scroll">
+      <div className="flex w-full px-2 gap-4 overflow-x-auto">
         {recommendedHotel?.map((recommended, ind) => (
           <div className="shrink-0" key={ind}>
             <div className="relative">
@@ -89,8 +89,8 @@ const RecommendedCard = () => {
                 height={96}
                 className="rounded-md object-cover"
               />
-              <div className="absolute top-3 bg-black border h-[12px] border-white border-b-0 w-[60px] rounded-sm -left-1">
-                <p className="uppercase h-[10px] bg-black text-[#f26600] text-center text-[6px] border-b whitespace-nowrap  w-fit mx-auto rounded">
+              <div className="absolute top-3 bg-yellow-600 border h-[12px] border-[#f26600] border-b-0 w-[60px] rounded-sm -left-1">
+                <p className="uppercase h-[10px] bg-yellow-600 text- text-center text-[6px] border-b whitespace-nowrap  w-fit mx-auto rounded">
                   {recommended?.hotelTag}
                 </p>
               </div>
@@ -127,4 +127,4 @@ const RecommendedCard = () => {
   );
 };
 
-export default RecommendedCard;
+export default OurCollectionCard;
