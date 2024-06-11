@@ -10,7 +10,7 @@ const HomeTopNav = () => {
           Roomilo
         </h1>
       </div>
-      <div className=" flex items-center justify-end absolute top-[12px] md:top-[9px] text-[24px] md:text-[30px] gap-3 right-2 ">
+      <div className=" flex items-center justify-end absolute top-[12px] md:top-[9px] text-[24px] md:text-[30px] gap-3 right-3 ">
         <p>
           <IoLanguageOutline />
         </p>
