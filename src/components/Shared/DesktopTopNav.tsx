@@ -9,6 +9,8 @@ import { BiBuildingHouse } from "react-icons/bi";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { PiSuitcaseSimpleBold } from "react-icons/pi";
 import { LuPhone } from "react-icons/lu";
+import Image from "next/image";
+import logo from '../../assets/images/romilologo.png'
 
 const DesktopTopNav = () => {
   const [isLanguageSwitchOpen, setLanguageSwitchOpen] = useState(false);
@@ -47,7 +49,10 @@ const DesktopTopNav = () => {
   return (
     <div>
       <div className="bg-[#f26600] text-[14px] px-[5em] h-[70px] flex items-center  justify-between gap-4">
-        <div className="text-[26px] text-white font-extrabold">Roomilo</div>
+        {/* <div className="text-[26px] text-white font-extrabold">Roomilo</div> */}
+        <div>
+          <Image src={logo} alt="logo" width={150}/>
+        </div>
         <div className="flex items-center text-white">
           {desktopTopNavContent?.map((topNav, idx) => (
             <div

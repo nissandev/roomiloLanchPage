@@ -5,6 +5,8 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { LuPhone, LuUser } from "react-icons/lu";
 import { TbWorld } from "react-icons/tb";
 import { TfiTarget } from "react-icons/tfi";
+import blackOrangeLogo from "../../assets/images/blackorangeLogo.png";
+import Image from "next/image";
 
 interface RoomGuest {
   roomCount: number;
@@ -16,13 +18,13 @@ interface Props {
   handleIncreaseGuest: (index: number) => void;
   handleDeleteRoom: () => void;
   handleAddRoom: () => void;
-  handleLocationSearch:(event:any)=>void;
+  handleLocationSearch: (event: any) => void;
   dateFormatter: string;
-  searchedLocation:string;
+  searchedLocation: string;
   RangePicker: any; // You should replace `any` with the actual type of RangePicker
   setFormattedDates: (dates: string[]) => void;
   setGuestDropdownOpen: (isOpen: boolean) => void;
-  setSearchLocation:(location:any)=>void;
+  setSearchLocation: (location: any) => void;
   isGuestDropdownOpen: boolean;
   state: {
     totalRooms: number;
@@ -53,8 +55,6 @@ const DesktopScrollNavbar: React.FC<Props> = ({
     setLanguageSwitchOpen(!isLanguageSwitchOpen);
   };
 
-
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -68,18 +68,19 @@ const DesktopScrollNavbar: React.FC<Props> = ({
     setShowNavbar(scrollPosition > showAtHeight);
   };
 
-
   useEffect(() => {
     setLanguageSwitchOpen(false);
   }, [selectedLanguage]);
   return (
-    <div className={`fixed top-0 bg-white h-[70px] w-full z-20 text-[14px] ${
-      showNavbar ? "visible slide-down" : "hidden"
-    }`}>
+    <div
+      className={`fixed top-0 bg-white h-[70px] w-full z-20 text-[14px] shadow-md ${
+        showNavbar ? "visible slide-down" : "hidden"
+      }`}
+    >
       <div className="h-[70px] flex items-center">
         <div className="flex items-center justify- mx-[20px] w-full">
           <div>
-            <h1 className="text-[32px] font-extrabold text-[#f26600]">Roomilo</h1>
+            <Image src={blackOrangeLogo} alt="logo" width={150} />
           </div>
           {/*----------------- Search bar start---------------*/}
           <div className="h-auto flex flex-col md:flex-row items-center justify-evenly bg-white w-full md:w-full mx-4 border rounded-md font-semibold md:h-[47px]">
@@ -92,14 +93,21 @@ const DesktopScrollNavbar: React.FC<Props> = ({
                   onChange={handleLocationSearch}
                 />
               </p>
-              {!searchedLocation ? <p className="2xl:min-w-[80px] flex items-center gap-1 bg-gray-200 rounded-full px-2 2xl:py-1 text-[12px] h-fit whitespace-nowrap">
-              <span>
-                <TfiTarget />
-              </span>
-              <span>Near me</span>
-            </p>:<p onClick={()=>setSearchLocation('')} className="min-w-[80px] flex items-center justify-end text-xl font-thin cursor-pointer text-gray-500 h-fit whitespace-nowrap">
-              <span>X</span>
-            </p>}
+              {!searchedLocation ? (
+                <p className="2xl:min-w-[80px] flex items-center gap-1 bg-gray-200 rounded-full px-2 2xl:py-1 text-[12px] h-fit whitespace-nowrap">
+                  <span>
+                    <TfiTarget />
+                  </span>
+                  <span>Near me</span>
+                </p>
+              ) : (
+                <p
+                  onClick={() => setSearchLocation("")}
+                  className="min-w-[80px] flex items-center justify-end text-xl font-thin cursor-pointer text-gray-500 h-fit whitespace-nowrap"
+                >
+                  <span>X</span>
+                </p>
+              )}
             </div>
             <div className="flex p-2.5 gap-1 items-center flex-grow  justify-start  mx-a border-b md:border-r border-[#969696] md:border-b-0 h-auto md:h-full w-[150px] 2xl:min-w-[230px] whitespace-nowrap">
               {/* <p>Tue, 4 Jun</p>
@@ -114,7 +122,7 @@ const DesktopScrollNavbar: React.FC<Props> = ({
                 size="small"
                 format={dateFormatter}
                 defaultValue={[dayjs(), dayjs().add(1, "day")]}
-                onChange={(dates:any, dateStrings:string) => {
+                onChange={(dates: any, dateStrings: string) => {
                   if (dates && dates[0] && dates[1]) {
                     const formattedDates = [
                       `Start Date: ${dates[0].format("YYYY-MM-DD")}`,
