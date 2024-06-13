@@ -89,6 +89,7 @@ const DesktopScrollNavbar: React.FC<Props> = ({
                 <input
                   className="focus:ring-blue-500 focus:outline-none border-none md:w-[150%] focus:ring-0 focus:border-none w-[100%] h-full p-2.5 placeholder:text-[#757575]"
                   type="text"
+                  value={searchedLocation}
                   placeholder="Search by city, hotel or neighborhood"
                   onChange={handleLocationSearch}
                 />
