@@ -11,6 +11,7 @@ import { PiSuitcaseSimpleBold } from "react-icons/pi";
 import { LuPhone } from "react-icons/lu";
 import Image from "next/image";
 import logo from '../../assets/images/romilologo.png'
+import Link from "next/link";
 
 const DesktopTopNav = () => {
   const [isLanguageSwitchOpen, setLanguageSwitchOpen] = useState(false);
@@ -212,14 +213,14 @@ const DesktopTopNav = () => {
           </div>
           <div>
             <div>
-              <button className="pl-4 flex font-semibold gap-1 items-center justify-center">
+              <Link href={'/login'} className="pl-4 flex font-semibold gap-1 items-center justify-center">
                 <p>
                   <LuUser className="h-[24px] w-[24px] bg-white/50 text-white p-[1px] rounded-full" />
                 </p>
                 <p>Login</p>
                 <p>/</p>
                 <p>Signup</p>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

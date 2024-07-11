@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import { Suspense } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import CheckLayout from "./CheckLayout/CheckLayout";
+import CheckLayout from "../CheckLayout/CheckLayout";
 
 // const inter = Inter({ subsets: ["greek"] });
 
