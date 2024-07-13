@@ -51,9 +51,9 @@ const DesktopTopNav = () => {
     <div>
       <div className="bg-[#f26600] text-[14px] px-[5em] h-[70px] flex items-center  justify-between gap-4">
         {/* <div className="text-[26px] text-white font-extrabold">Roomilo</div> */}
-        <div>
-          <Image src={logo} alt="logo" width={150}/>
-        </div>
+        <Link href={'/'}>
+            <Image src={logo} alt="logo" width={150} className="hover:scale-105 transition-all duration-500" />
+          </Link>
         <div className="flex items-center text-white">
           {desktopTopNavContent?.map((topNav, idx) => (
             <div

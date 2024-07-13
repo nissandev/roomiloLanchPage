@@ -1,15 +1,49 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../../assets/images/orange.png";
+import Link from "next/link";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
-const page = () => {
+const Login = () => {
+  const [phone, setPhone] = useState("");
+  const [isSignWithPass, setSignWithPass] = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const credential = {
+    phone,
+    password,
+  };
+
+  // Function to handle password input change
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  // Function to handle form submission (verify number button)
+  const handleSubmit = () => {
+    // Handle form submission logic here
+    console.log("Form submitted!", credential);
+  };
+
+  // Function to check if the password meets the length criteria
+  const isPasswordValid = password.length >= 6 && password.length <= 20;
+
   return (
     <div className="h-screen bg-[url(/bamboo.jpg)] bg-cover">
       <div className="bg-black bg-opacity-60 h-full">
         <div className="flex gap-5 items-center px-[80px] py-5">
-          <div>
-            <Image src={logo} alt="logo" width={150} />
-          </div>
+          <Link href={"/"}>
+            <Image
+              src={logo}
+              alt="logo"
+              width={150}
+              className="hover:scale-105 transition-all duration-500"
+            />
+          </Link>
           <p className="text-[16px] mt-4 text-white font-semibold">
             Hotels and homes across 64 cities, 2+ countries
           </p>
@@ -30,8 +64,8 @@ const page = () => {
             <h2 className="p-[35px] tex-[14px] py-1.5 font-semibold text-white bg-gradient-to-r from-[#f26600] to-orange-700">
               Sing up & Get 500Tk Roomilo Money
             </h2>
-            <div className="h-[489px]">
-              <h1 className="text-[32px] font-bold pl-[35px] pt-[23px]">
+            <div className={ isSignWithPass ?`h-[438px]`:'h-[487px]'}>
+              <h1 className="text-[32px] font-bold pl-[35px] pt-[23px] pb-8">
                 Login / Signup
               </h1>
 
@@ -43,43 +77,100 @@ const page = () => {
                   >
                     Please enter your phone number to continue
                   </label>
-                  <input
-                    className="p-[12px] focus:outline-none border"
-                    id="phoneNumber"
-                    type="number"
-                  />
+                  <div className="w-full">
+                    <PhoneInput
+                      forceDialCode
+                      defaultCountry="bd"
+                      value={phone}
+                      inputStyle={{
+                        width: "100%",
+                        height: "36px",
+                        backgroundColor: "white",
+                        color: "#222",
+                        fontSize: "14px",
+                        borderRadius: "4px",
+                        borderColor: "gainsboro",
+                        padding: "10px",
+                      }}
+                      onChange={(phone) => setPhone(phone)}
+                    />
+                  </div>
+
+                  {isSignWithPass ? (
+                    <div>
+                      <div className="flex flex-col mt-1 gap-[6px]">
+                        <label
+                          htmlFor="password"
+                          className="font-semibold text-[16px]"
+                        >
+                          Password
+                        </label>
+                        <form className="relative">
+                          <input
+                            required
+                            type={showPass ? "text" : "password"}
+                            placeholder="Password"
+                            value={password}
+                            maxLength={20}
+                            minLength={6}
+                            onChange={handlePasswordChange}
+                            className="p-1.5 border w-full rounded focus:outline-none"
+                          />
+                          <div
+                            onClick={() => setShowPass(!showPass)}
+                            className="absolute top-[33%] text-[15px] cursor-pointer right-4"
+                          >
+                            {showPass ? <FaEyeSlash /> : <FaEye />}
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
                 <button
-                  className="px-14 py-4 mt-4 rounded hover:bg-orange-600 transition-all duration-300 shadow-md bg-[#f26600] font-semibold text-white"
-                  type="button"
+                  className={`px-14 py-4 mt-4 active:scale-90 rounded hover:bg-orange-600 transition-all duration-500 shadow-md bg-[#f26600] font-semibold text-white ${
+                    !isPasswordValid ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  type="submit"
+                  disabled={!isPasswordValid}
+                  onClick={handleSubmit}
                 >
                   Verify Number
                 </button>
-                <p className="mt-3">
-                  Prefer to Sign in With passWord instead ?{" "}
-                  <span className="font-semibold text-red-500">Click here</span>
+                <p className="mt-3 font-semibold">
+                  {isSignWithPass
+                    ? "Prefer to Proceed with OTP instead? "
+                    : "Prefer to Sign in with password instead ?"}
+                  <span
+                    onClick={() => setSignWithPass(!isSignWithPass)}
+                    className="font-semibold pl-2 text-red-500 cursor-pointer"
+                  >
+                    Click here
+                  </span>
                 </p>
               </div>
-              <div className="absolute bottom-0 w-full h-[84px] bg-white">
-                <div className="border relative">
-                  <p className="absolute bg-white px-2 py-1 font-semibold -top-4 left-[30px]">
-                    Or Sign in as
-                  </p>
-                </div>
-                <div className="w-full pl-[35px] h-[84px] flex items-center">
-                  <div className="flex  gap-5">
-                    <div className="flex items-center gap-1 font-semibold">
-                      <p>Travel Agent</p>
-                      <p>{">"}</p>
-                    </div>
-                    <div>|</div>
-                    <div className="font-semibold flex items-center gap-1">
-                      <p>Corporate</p>
-                      <p>{">"}</p>
+              {!isSignWithPass ? (
+                <div className="absolute bottom-0 w-full h-[84px] bg-white">
+                  <div className="border relative">
+                    <p className="absolute bg-white px-2 py-1 font-semibold -top-4 left-[30px]">
+                      Or Sign in as
+                    </p>
+                  </div>
+                  <div className="w-full pl-[35px] h-[84px] flex items-center">
+                    <div className="flex  gap-5">
+                      <div className="flex items-center gap-1 font-semibold">
+                        <p>Travel Agent</p>
+                        <p>{">"}</p>
+                      </div>
+                      <div>|</div>
+                      <div className="font-semibold flex items-center gap-1">
+                        <p>Corporate</p>
+                        <p>{">"}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ) : null}
             </div>
           </div>
         </div>
@@ -88,4 +179,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Login;

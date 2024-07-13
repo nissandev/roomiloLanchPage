@@ -27,6 +27,9 @@ body {
 .ant-picker-input>input{
 width: 1px;
 }
+.react-international-phone-input-container .react-international-phone-country-selector-button {
+  padding: 10px;
+}
 
 .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before,
 .ant-picker-cell-in-view.ant-picker-cell-in-range::before,
