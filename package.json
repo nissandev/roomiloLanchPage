@@ -13,14 +13,17 @@
     "@netlify/plugin-nextjs": "^4.41.3",
     "antd": "^5.18.0",
     "dayjs": "^1.11.11",
+    "google-libphonenumber": "^3.2.35",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "react-international-phone": "^4.3.0",
+    "react-otp-input": "^3.1.1",
     "swr": "^2.2.5"
   },
   "devDependencies": {
+    "@types/google-libphonenumber": "^7.4.30",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
