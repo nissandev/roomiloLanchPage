@@ -8,6 +8,7 @@ import "react-international-phone/style.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { isPhoneValid } from "../../../utilis/utilis";
 import OtpInput from "react-otp-input";
+import SingUp from "../signUp/page";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
@@ -18,6 +19,7 @@ const Login = () => {
   console.log(otp?.length);
 
   const isSendingOTP = false;
+  const isNewPHNumber =true
 
   const credential = {
     phone,
@@ -47,7 +49,8 @@ const Login = () => {
   return (
     <div className="h-screen bg-[url(/bamboo.jpg)] bg-cover">
       <div className="bg-black bg-opacity-60 h-full">
-        <div className="flex gap-5 items-center px-[80px] py-5">
+       <>
+       <div className="flex gap-5 items-center px-[80px] py-5">
           <Link href={"/"}>
             <Image
               src={logo}
@@ -74,13 +77,13 @@ const Login = () => {
           {/* Login / Sign form */}
           <div className="bg-white w-[480px] whitespace-nowrap shrink-0 relative mr-10">
             <h2 className="p-[35px] tex-[14px] py-1.5 font-semibold text-white bg-gradient-to-r from-[#f26600] to-orange-700">
-              Sing up & Get 500Tk Roomilo Money
+              Sing up & Get 500 Roomilo Money
             </h2>
             <div
               className={
                 isSendingOTP
                   ? `h-[465px]`
-                  : !isSignWithPass
+                  : isSignWithPass
                   ? "h-[438px]"
                   : "h-[487px]"
               }
@@ -90,10 +93,11 @@ const Login = () => {
                   isSendingOTP ? "pb-" : "pb-8"
                 }`}
               >
-                {isSendingOTP ? "Share OTP" : "Login / Signup"}
+                {isSendingOTP ? "Share OTP" : isNewPHNumber ? 'Sign Up' : "Login / Signup"}
               </h1>
 
-              <div className="px-[35px]">
+            { isNewPHNumber ?  <SingUp/>:<>
+             <div className="px-[35px]">
                 {isSendingOTP ? (
                   <div>
                     <h2 className="font-semibold text-[16px]">
@@ -257,10 +261,13 @@ const Login = () => {
                   </div>
                 </div>
               ) : null}
+             </>}
             </div>
           </div>
         </div>
+       </>
       </div>
+     
     </div>
   );
 };
