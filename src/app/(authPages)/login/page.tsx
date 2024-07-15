@@ -9,6 +9,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { isPhoneValid } from "../../../utilis/utilis";
 import OtpInput from "react-otp-input";
 import SingUp from "../signUp/page";
+import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { CiDiscount1 } from "react-icons/ci";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
@@ -76,8 +78,8 @@ const Login = () => {
           </div>
           {/* Login / Sign form */}
           <div className="bg-white w-[480px] whitespace-nowrap shrink-0 relative mr-10">
-            <h2 className="p-[35px] tex-[14px] py-1.5 font-semibold text-white bg-gradient-to-r from-[#f26600] to-orange-700">
-              Sing up & Get 500 Roomilo Money
+            <h2 className="flex items-center gap-2 p-[35px] text-[14px] py-1.5 font-[700] text-white bg-gradient-to-r from-[#f26600] to-orange-700">
+            <CiDiscount1 className='text-xl' /> Sing up & Get <span className="flex items-center gap-1"><FaBangladeshiTakaSign />500</span> Roomilo Money
             </h2>
             <div
               className={
