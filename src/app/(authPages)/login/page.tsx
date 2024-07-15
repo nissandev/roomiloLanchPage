@@ -76,7 +76,15 @@ const Login = () => {
             <h2 className="p-[35px] tex-[14px] py-1.5 font-semibold text-white bg-gradient-to-r from-[#f26600] to-orange-700">
               Sing up & Get 500Tk Roomilo Money
             </h2>
-            <div className={isSendingOTP ? `h-[465px]` : !isSignWithPass ? 'h-[438px]'  : "h-[487px]"}>
+            <div
+              className={
+                isSendingOTP
+                  ? `h-[465px]`
+                  : !isSignWithPass
+                  ? "h-[438px]"
+                  : "h-[487px]"
+              }
+            >
               <h1
                 className={`text-[32px] font-bold pl-[35px] pt-[23px]  ${
                   isSendingOTP ? "pb-" : "pb-8"
@@ -127,7 +135,9 @@ const Login = () => {
                         Submit
                       </button>
                     </div>
-                    <p className="mt-4 font-semibold text-red-600">Resend Code</p>
+                    <p className="mt-4 font-semibold text-red-600">
+                      Resend Code
+                    </p>
                   </div>
                 ) : (
                   <div>
@@ -224,7 +234,8 @@ const Login = () => {
                   </div>
                 )}
               </div>
-              {!isSendingOTP ? (
+              {/* {!isSignWithPass|| !isSendingOTP ? ( */}
+              {!isSignWithPass ? (
                 <div className="absolute bottom-0 w-full h-[84px] bg-white">
                   <div className="border relative">
                     <p className="absolute bg-white px-2 py-1 font-semibold -top-4 left-[30px]">
