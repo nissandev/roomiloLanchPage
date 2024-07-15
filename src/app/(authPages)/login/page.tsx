@@ -19,7 +19,7 @@ const Login = () => {
   console.log(otp?.length);
 
   const isSendingOTP = false;
-  const isNewPHNumber =true
+  const isNewPHNumber =false
 
   const credential = {
     phone,
@@ -128,7 +128,7 @@ const Login = () => {
                     </div>
                     <div>
                       <button
-                        className={`px-28 py-4 mt-6 active:scale-90 rounded hover:bg-orange-600 transition-all duration-500 shadow-md bg-[#f26600] font-semibold text-white ${
+                        className={`px-28 py-3 mt-6 active:scale-90 rounded hover:bg-orange-600 transition-all duration-500 shadow-md bg-[#f26600] font-semibold text-white ${
                           otp?.length !== 4
                             ? "opacity-50 cursor-not-allowed"
                             : ""
@@ -209,7 +209,7 @@ const Login = () => {
                       ) : null}
                     </div>
                     <button
-                      className={`px-14 py-4 mt-4 active:scale-90 rounded hover:bg-orange-600 transition-all duration-500 shadow-md bg-[#f26600] font-semibold text-white ${
+                      className={`px-14 py-3 mt-4 active:scale-90 rounded hover:bg-orange-600 transition-all duration-500 shadow-md bg-[#f26600] font-semibold text-white ${
                         (!isSignWithPass && !isValid) ||
                         (isSignWithPass && password?.length <= 6)
                           ? "opacity-50 cursor-not-allowed"
