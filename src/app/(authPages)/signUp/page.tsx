@@ -88,7 +88,7 @@ const SingUp = () => {
         </div>
         <div>
           <button
-            className={`px-14 py-4 mt-4 active:scale-90 rounded hover:bg-orange-600 transition-all duration-500 shadow-md bg-[#f26600] font-semibold text-white (!isSignWithPass && !isValid) ||
+            className={`px-14 py-3 mt-4 active:scale-90 rounded hover:bg-orange-600 transition-all duration-500 shadow-md bg-[#f26600] font-semibold text-white (!isSignWithPass && !isValid) ||
             ${!isButtonEnabled ? "opacity-50 cursor-not-allowed" : ""}`}
             type='submit'
             disabled={!isButtonEnabled}>
